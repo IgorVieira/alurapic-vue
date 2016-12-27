@@ -18,7 +18,6 @@ export default {
 </script>
 <style scoped>
     img {
-        display: inline-block;
         width: 100%;
     }
 </style>

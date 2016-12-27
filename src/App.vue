@@ -1,63 +1,86 @@
 <template>
   <div class="corpo">
     
-    <h1>Alurapic</h1>
-
-    <my-painel :titulo="foto.titulo" v-for="foto in fotos">
-      <my-foto :url="foto.url" :titulo="foto.titulo"/>
-    </my-painel>
+    <h1 class="titulo">{{ titulo }}</h1>
+    
+    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
+    
+    <ul class="lista-fotos">
+      <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
+        <meu-painel :titulo="foto.titulo">
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo">
+        </meu-painel>
+      </li>
+    </ul>
 
   </div>
 </template>
 
 <script>
-import Foto from './foto/Foto.vue'
-import Painel from './painel/Painel.vue'
+
+import Painel from './shared/painel/Painel.vue';
+import ImagemResponsiva from './shared/imagem-responsiva/ImagemResponsiva.vue'
 
 export default {
-
+  
   components: {
-    'my-foto': Foto,
-    'my-painel': Painel
+
+    'meu-painel': Painel,
+    'imagem-responsiva': ImagemResponsiva
   },
 
   data () {
     return {
+      titulo: 'Alurapic', 
 
-      fotos: [
-        { 
-          url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwV4kVzT5McBdGSgqlVeRzubrNH_mOrrkKseDOGFURq20HmsrelEfMU7It',
-          titulo: 'cachorro'
-        },
-        { 
-          url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwV4kVzT5McBdGSgqlVeRzubrNH_mOrrkKseDOGFURq20HmsrelEfMU7It',
-          titulo: 'cachorro2'
-        }
-      ]
+      fotos: [],
 
+      filtro: ''
     }
   },
+
+  computed: {
+    fotosComFiltro() {
+      if (this.filtro) {
+        let exp = new RegExp(this.filtro.trim(), 'i');
+        return this.fotos.filter(foto => exp.test(foto.titulo));
+      } else {
+        return this.fotos;
+      }
+    }
+  },
+
   created() {
     
     this.$http
       .get('http://localhost:3000/v1/fotos')
       .then(res => res.json())
-      .then(fotos => {
-        this.fotos = fotos;
-      }, err => console.log(err));
+      .then(fotos => this.fotos = fotos);
   }
 }
 </script>
 <style>
-  * {
-    box-sizing: border-box;
+
+  .titulo {
+    text-align: center;
   }
+
   .corpo {
     font-family: Helvetica, sans-serif;
     margin: 0 auto;
     width: 96%;
   }
-  h1 {
-    text-align: center;
+
+  .lista-fotos {
+    list-style: none;
+  }
+
+  .lista-fotos .lista-fotos-item {
+    display: inline-block;
+  }
+  
+  .filtro {
+    display: block;
+    width: 100%;
   }
 </style>
