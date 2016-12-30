@@ -5,6 +5,8 @@ import VueRouter from 'vue-router';
 
 import { routes } from './routes';
 
+import './directives/Rotate';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({

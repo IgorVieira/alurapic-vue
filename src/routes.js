@@ -1,5 +1,5 @@
-import Home from './home/Home.vue';
-import Cadastro from './cadastro/Cadastro.vue';
+import Home from './components/home/Home.vue';
+import Cadastro from './components/cadastro/Cadastro.vue';
 
 export const routes = [
 

@@ -1,6 +1,8 @@
 <template>
   <div class="corpo">
-    <router-view></router-view>
+    <transition name="pagina">
+      <router-view></router-view>
+    </transtion>
   </div>
 </template>
 <script>
@@ -11,4 +13,12 @@
     margin: 0 auto;
     width: 96%;
   }
+
+  .pagina-enter-active, .pagina-leave-active {
+    transition: opacity .2s
+  }
+  .pagina-enter, .pagina-leave-active {
+    opacity: 0
+  }
+
 </style>
