@@ -1,14 +1,15 @@
 <template>
     <div>    
-        <h1 class="titulo">Alurapic</h1>
+        <h1 class="titulo" v-meu-rotate>Alurapic</h1>
         <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
         <ul class="lista-fotos">
           <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
               <meu-painel :titulo="foto.titulo">
-                <imagem-responsiva :url="foto.url" :titulo="foto.titulo"  v-meu-rotate/>
+                <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-meu-rotate.animate="15"/>
                 <meu-botao 
                   rotulo="remover" 
                   tipo="button" 
+                  estilo="perigo"
                   :confirmacao="true" 
                   @botaoAtivado="remove(foto)"/>
               </meu-painel>
