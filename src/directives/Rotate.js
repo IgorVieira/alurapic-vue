@@ -10,7 +10,13 @@ Vue.directive('meu-rotate', {
 
         let graus = binding.value || 90;
 
-        current+=graus;
+      
+        if(binding.modifiers.reverse) {
+          current-=graus;
+        } else {
+          current+=graus;
+        }
+        
         this.style.transform = `rotate(${current}deg)`;
         if (binding.modifiers.animate) this.style.transition = "transform 0.5s";
         
