@@ -33,7 +33,7 @@
 
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
 import Botao from '../shared/botao/Botao.vue';
-import Foto from '../../model/foto/Foto.js';
+import Foto from '../../domain/foto/Foto.js';
 
 export default {
 
