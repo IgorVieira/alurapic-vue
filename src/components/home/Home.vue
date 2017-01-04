@@ -25,6 +25,9 @@ import Painel from '../shared/painel/Painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
 import Botao from '../shared/botao/Botao.vue';
 
+// importando FotoService
+import FotoService from '../../domain/foto/FotoService';
+
 export default {
 
   components: {
@@ -63,8 +66,8 @@ export default {
 
     remove(foto) {
 
-      this.resource
-        .delete({id: foto._id})
+      this.service
+        .apaga(foto._id)
         .then(
           () => {
             let indice = this.fotos.indexOf(foto);
@@ -82,10 +85,9 @@ export default {
 
   created() {
     
-    this.resource = this.$resource('v1/fotos{/id}');
-
-    this.resource
-      .query()
+    this.service = new FotoService(this.$resource);
+    
+    this.service.lista()
       .then(res => res.json())
       .then(fotos => this.fotos = fotos, err => console.log(err));
   }
