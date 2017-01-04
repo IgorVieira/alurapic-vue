@@ -1,8 +1,8 @@
 <template>
 
   <div>
-    <h1 class="titulo">Cadastro</h1>
-    <h2 class="titulo">{{ foto.titulo }}</h2>
+    <h1 class="centralizado">Cadastro</h1>
+    <h2 class="centralizado">{{ foto.titulo }}</h2>
     <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
@@ -54,6 +54,8 @@ export default {
 
     grava() {
 
+      console.log(this.foto);
+
       this.$http
         .post('http://localhost:3000/v1/fotos', this.foto)
         .then(() => this.foto = new Foto(), err => console.log(err));
@@ -65,7 +67,7 @@ export default {
 </script>
 <style scoped>
 
-  .titulo {
+  .centralizado {
     text-align: center;
   }
   .controle {
