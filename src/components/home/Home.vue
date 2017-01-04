@@ -1,6 +1,6 @@
 <template>
     <div>    
-        <h1 class="titulo" v-meu-transform>Alurapic</h1>
+        <h1 class="titulo">Alurapic</h1>
         <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
         <ul class="lista-fotos">
           <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
@@ -69,7 +69,7 @@ export default {
     this.$http
       .get('http://localhost:3000/v1/fotos')
       .then(res => res.json())
-      .then(fotos => this.fotos = fotos);
+      .then(fotos => this.fotos = fotos, err => console.log(err));
   }
 }
 </script>
