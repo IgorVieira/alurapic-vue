@@ -88,7 +88,6 @@ export default {
     this.service = new FotoService(this.$resource);
     
     this.service.lista()
-      .then(res => res.json())
       .then(fotos => this.fotos = fotos, err => console.log(err));
   }
 }

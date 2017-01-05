@@ -12,7 +12,9 @@ export default class FotoService {
 
     lista() {
 
-        return this._resource.query();
+        return this._resource
+            .query()
+            .then(res => res.json());
     }
 
     apaga(id) {
