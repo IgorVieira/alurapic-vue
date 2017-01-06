@@ -18,7 +18,7 @@
         <label for="url">URL</label>
         <input name="url" v-model="foto.url" id="url" autocomplete="off"
         v-validate data-vv-rules="required|url">
-        <span v-show="errors.has('url')">{{ errors.first('url') }}</span>
+        <span class="erro" v-show="errors.has('url')">{{ errors.first('url') }}</span>
         <imagem-responsiva v-show="foto.url" :url="foto.url" :titulo="foto.titulo"/>
       </div>
 

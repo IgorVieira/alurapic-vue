@@ -7,8 +7,17 @@ import './directives/Transform';
 
 // importando o VeeValidate 
 import VeeValidate from 'vee-validate';
-// registrando o plugin 
-Vue.use(VeeValidate);
+
+import msg from './pt_Br';
+
+Vue.use(VeeValidate, {
+    locale: 'pt_BR',
+    dictionary: {
+        pt_BR: {
+            messages: msg
+        }
+    }
+});
 
 Vue.use(VueRouter);
 
@@ -19,8 +28,6 @@ const router = new VueRouter({
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
-
-
 
 new Vue({
   el: '#app',
