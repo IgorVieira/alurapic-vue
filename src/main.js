@@ -24,6 +24,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes, 
   mode: 'history'
+  
 });
 
 Vue.use(VueResource);
