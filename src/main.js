@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
-
 import { routes } from './routes';
-
 import './directives/Transform';
+
+// importando o VeeValidate 
+import VeeValidate from 'vee-validate';
+// registrando o plugin 
+Vue.use(VeeValidate);
 
 Vue.use(VueRouter);
 
@@ -16,6 +19,8 @@ const router = new VueRouter({
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
+
+
 
 new Vue({
   el: '#app',
