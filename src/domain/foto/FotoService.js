@@ -26,7 +26,7 @@ export default class FotoService {
                 res => res.json(),
                 err => {
                     console.log(err);
-                    throw new Error('Não foi possível obter as fotos. Tenta mais tarde.');
+                    throw new Error('Não foi possível obter as fotos. Tente mais tarde.');
                 }
             )
     }
