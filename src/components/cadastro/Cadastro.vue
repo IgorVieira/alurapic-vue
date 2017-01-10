@@ -31,7 +31,6 @@
         <meu-botao rotulo="GRAVAR" tipo="submit"/>
         <router-link :to="{name: 'home'}"><meu-botao rotulo="VOLTAR" tipo="button"/></a>
       </div>
-
     </form>
   </div>
 </template>
@@ -64,14 +63,20 @@ export default {
 
     grava() {
 
-      this.service
-        .cadastra(this.foto)
-        .then(() => {
-          if(this.id) this.$router.push({ name: 'home'});
-          this.foto = new Foto()
-        }, 
-        err => console.log(err));
-        
+        this.$validator
+          .validateAll()
+          .then(success => {
+            if(success) {
+
+              this.service
+                .cadastra(this.foto)
+                .then(() => {
+                  if(this.id) this.$router.push({ name: 'home'});
+                  this.foto = new Foto()
+                }, 
+                err => console.log(err));
+            }
+        });
     }
   }, 
 
